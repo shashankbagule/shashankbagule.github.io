@@ -1,0 +1,38 @@
+shashank@bagule_
+about
+findings
+projects
+experience
+ contact
+← Back to findings
+TARGET · Atom Medium CSRF
+Cross-Site Request Forgery in authenticated workflows
+State-changing actions on Atom's platform could be triggered on behalf of a logged-in user without their consent.
+
+This write-up is intentionally high-level. It omits the specific endpoint and crafted page used, to avoid providing a working exploit template.
+Vulnerability
+A Cross-Site Request Forgery (CSRF) issue affecting an authenticated, state-changing endpoint in Atom's user dashboard, which processed requests without validating a CSRF token or otherwise confirming the request originated from Atom's own interface.
+
+Target
+atom.com — specifically the account-details endpoint in the authenticated user dashboard (/dashboard/account/details).
+
+Impact
+An attacker could craft a malicious web page that, when visited by an authenticated Atom user, silently submitted a forged request to this endpoint — potentially modifying account settings or other sensitive data on the victim's behalf, with no interaction beyond simply loading the page. This also opens the door to follow-on social engineering, since the victim would have no indication anything happened.
+
+Root Cause
+The endpoint had no server-side CSRF token validation, and cookie/header defenses (SameSite attributes, Origin/Referer checks) were not enforced strictly enough to block a cross-origin request from succeeding.
+
+Exploitation summary
+Logged into a valid Atom account, then built a proof-of-concept HTML page containing a forged request targeting the account-details endpoint. Hosting and visiting that page while authenticated triggered automatic submission of the forged request, which the endpoint accepted with no CSRF validation and no further interaction from the victim. I recorded this end-to-end as a video PoC to send with the report.
+
+Proof of concept
+A working PoC — a self-submitting HTML page plus a screen recording of the exploit executing against a live authenticated session — was provided directly to Atom's security team. This write-up omits the PoC page itself and the exact request details, to avoid publishing a directly reusable exploit template.
+
+Remediation
+Implement per-session anti-CSRF tokens, validated server-side on every state-changing request.
+Set session cookies with SameSite=Strict or Lax as appropriate for the application's flows.
+Validate Origin/Referer headers on sensitive actions as an additional layer of defense.
+Reported directly to Atom's security team by email, with a full video PoC attached; disclosed responsibly with no public release.
+
+Get in touch
+Shashank Kishor Bagule — B.E. Computer Engineering, Dilkap Institute of Technology ← back to portfolio
