@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shashank Bagule — Security Researcher</title>
+<meta name="description" content="Shashank Bagule — Security researcher and offensive security tooling builder. Web application penetration testing, VAPT, and AI-assisted security agents.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#top" class="logo"><span class="dot"></span>shashank@bagule<span class="cursor">_</span></a>
+    <ul class="navlinks">
+      <li><a href="#about">about</a></li>
+      <li><a href="#findings">findings</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#experience">experience</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#research">research</a></li>
+    </ul>
+    <div class="navright">
+      <a class="navicon" href="https://github.com/shashankbagule" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.28 7.77 10.78.57.1.78-.25.78-.55 0-.27-.01-1.16-.02-2.11-3.16.69-3.83-1.35-3.83-1.35-.52-1.31-1.26-1.66-1.26-1.66-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.73 2.65 1.23 3.3.94.1-.73.4-1.23.72-1.51-2.52-.29-5.17-1.26-5.17-5.62 0-1.24.44-2.26 1.17-3.05-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.16.91-.25 1.89-.38 2.86-.38.97 0 1.95.13 2.86.38 2.18-1.47 3.14-1.16 3.14-1.16.62 1.57.23 2.73.11 3.02.73.79 1.17 1.81 1.17 3.05 0 4.37-2.65 5.33-5.18 5.61.41.35.77 1.04.77 2.1 0 1.51-.01 2.73-.01 3.1 0 .3.2.66.79.55 4.5-1.5 7.76-5.76 7.76-10.78C23.02 5.24 18.27.5 12 .5z"/></svg>
+      </a>
+      <a class="navcta" href="mailto:shashankbagule@gmail.com">contact</a>
+    </div>
+    <button class="menutoggle" id="menutoggle" aria-label="Toggle menu">≡</button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero-watermark">0x1F</div>
+    <div class="wrap hero-grid">
+      <div>
+        <span class="comment"><span class="num">01</span> offensive security / security research</span>
+        <h1>I don't just find the flaw.<br>I show <span class="hl">how it gets exploited.</span></h1>
+        <p class="lede">Shashank Bagule — Computer Engineering graduate and independent security researcher based between Mumbai and Pune, focused on web application penetration testing, API security, and building AI-assisted offensive security tooling.</p>
+        <div class="herobtns">
+          <div class="resume-drop" id="resumeDrop">
+            <a class="btn btn-primary" href="Shashank_Bagule_Resume.pdf" download style="border-radius:4px 0 0 4px;">Download resume</a><button type="button" class="btn btn-primary" id="resumeCaret" aria-label="Choose resume version" style="border-radius:0 4px 4px 0;border-left:1px solid rgba(0,0,0,0.15);padding:13px 12px;">▾</button>
+            <div class="resume-menu">
+              <a href="Shashank_Bagule_Resume.pdf" download>Mumbai version <span>↓</span></a>
+              <a href="Shashank_Bagule_Resume_Pune.pdf" download>Pune version <span>↓</span></a>
+            </div>
+          </div>
+          <a class="btn btn-ghost" href="https://github.com/shashankbagule" target="_blank" rel="noopener">GitHub ↗</a>
+          <a class="btn btn-ghost" href="#findings">View findings</a>
+        </div>
+      </div>
+      <div>
+        <div class="console">
+          <div class="console-bar">
+            <span class="tl tl-r"></span><span class="tl tl-y"></span><span class="tl tl-g"></span>
+            <span class="fname">mcp-sentinel — scan.log</span>
+          </div>
+          <div class="console-body" id="termbody" aria-hidden="true"></div>
+        </div>
+        <div class="graph-box">
+          <div class="graph-label"><span>attack_graph.svg</span><span class="live">reasoning</span></div>
+          <svg viewBox="0 0 380 220" width="100%" role="img" aria-label="Diagram of an attack chain moving from recon to authentication bypass to privilege escalation to a confirmed exploit">
+            <title>Attack chain diagram</title>
+            <line x1="55" y1="45" x2="180" y2="45" stroke="#2e3947" stroke-width="2"/>
+            <line x1="180" y1="45" x2="180" y2="125" stroke="#2e3947" stroke-width="2"/>
+            <line x1="180" y1="125" x2="305" y2="125" stroke="#2e3947" stroke-width="2"/>
+            <line x1="305" y1="125" x2="305" y2="195" stroke="#2e3947" stroke-width="2"/>
+
+            <line x1="55" y1="45" x2="180" y2="45" stroke="#49c8b0" stroke-width="2" class="dash"/>
+            <line x1="180" y1="45" x2="180" y2="125" stroke="#49c8b0" stroke-width="2" class="dash"/>
+
+            <circle cx="55" cy="45" r="25" fill="#1b232d" stroke="#49c8b0" stroke-width="1.5"/>
+            <text x="55" y="42" text-anchor="middle" fill="#edece5" font-family="JetBrains Mono" font-size="9">RECON</text>
+            <text x="55" y="54" text-anchor="middle" fill="#8b93a1" font-family="JetBrains Mono" font-size="7">subfinder</text>
+
+            <circle cx="180" cy="45" r="25" fill="#1b232d" stroke="#49c8b0" stroke-width="1.5" class="pulse-dot"/>
+            <text x="180" y="42" text-anchor="middle" fill="#edece5" font-family="JetBrains Mono" font-size="9">AUTH</text>
+            <text x="180" y="54" text-anchor="middle" fill="#8b93a1" font-family="JetBrains Mono" font-size="7">JWT check</text>
+
+            <circle cx="180" cy="125" r="25" fill="#1b232d" stroke="#ffb454" stroke-width="1.5"/>
+            <text x="180" y="122" text-anchor="middle" fill="#edece5" font-family="JetBrains Mono" font-size="9">IDOR</text>
+            <text x="180" y="134" text-anchor="middle" fill="#8b93a1" font-family="JetBrains Mono" font-size="7">scope gap</text>
+
+            <circle cx="305" cy="125" r="25" fill="#1b232d" stroke="#2e3947" stroke-width="1.5"/>
+            <text x="305" y="122" text-anchor="middle" fill="#edece5" font-family="JetBrains Mono" font-size="9">CHAIN</text>
+            <text x="305" y="134" text-anchor="middle" fill="#8b93a1" font-family="JetBrains Mono" font-size="7">reasoning</text>
+
+            <circle cx="305" cy="195" r="25" fill="#1b232d" stroke="#e5484d" stroke-width="1.5"/>
+            <text x="305" y="192" text-anchor="middle" fill="#edece5" font-family="JetBrains Mono" font-size="9">CONFIRM</text>
+            <text x="305" y="204" text-anchor="middle" fill="#8b93a1" font-family="JetBrains Mono" font-size="7">exploit</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="scope-stripe">
+    <div class="wrap">
+      <span>SCOPE</span><span class="sep">//</span><span>WEB APPLICATIONS</span><span class="sep">·</span><span>APIS</span><span class="sep">·</span><span>AI AGENTS &amp; MCP SERVERS</span>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head"><span class="comment"><span class="num">02</span> about</span></div>
+      <h2 style="margin-bottom:32px;">What I do</h2>
+      <div class="about-grid reveal">
+        <div>
+          <p>I test web applications and APIs for the ways they actually fail — broken auth, exposed secrets, misconfigured scope, logic gaps automated scanners walk straight past. Findings get validated, reproduced, and written up the way a triage team can act on: clear impact, clean proof-of-concept, no noise.</p>
+          <p>Outside client work, I build the tooling I wish existed — like an AI reasoning agent that doesn't just flag issues but chains them into a real attack path, the same way a human tester would.</p>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><b>~6mo</b><span>independent security research</span></div>
+          <div class="stat"><b>$500</b><span>bug bounty, JWT finding</span></div>
+          <div class="stat"><b>1</b><span>CVE reproduced and validated</span></div>
+          <div class="stat"><b>1</b><span>AI security agent built</span></div>
+          <div class="stat"><b>1</b><span>Hall of Fame recognition</span></div>
+          <div class="stat"><b>6.84</b><span>CGPI, Computer Engineering</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="findings">
+    <div class="wrap">
+      <div class="sec-head"><span class="comment"><span class="num">03</span> findings</span></div>
+      <h2 style="margin-bottom:32px;">Validated vulnerabilities</h2>
+      <div class="reveal">
+        <a class="finding" href="writeups/ultra-mobile.html">
+          <span class="bar" style="background:var(--sev-high)"></span>
+          <div class="org">Ultra Mobile<small>CVE-2025-55184</small></div>
+          <div class="desc">Independently reproduced this publicly documented React Server Components vulnerability against the affected application, to verify whether it was still present and exploitable.</div>
+          <span class="badge badge-high">P2 · High</span>
+        </a>
+        <a class="finding" href="writeups/xeal.html">
+          <span class="bar" style="background:var(--sev-medium)"></span>
+          <div class="org">Xeal<small>JWT alg:none</small></div>
+          <div class="desc">Discovered a JWT signature-bypass issue; delivered a full technical write-up and proof-of-concept. Paid a $500 bounty.</div>
+          <span class="badge badge-medium">Triaged · CVSS 5.0</span>
+        </a>
+        <a class="finding" href="writeups/gea-group.html">
+          <span class="bar" style="background:var(--sev-low)"></span>
+          <div class="org">GEA Group<small>Exposed API key</small></div>
+          <div class="desc">Reported an exposed Google Maps API key in a GEA Group web application. Recognized in the company's Security Hall of Fame.</div>
+          <span class="badge badge-low">Low / Info</span>
+        </a>
+        <a class="finding" href="writeups/atom.html">
+          <span class="bar" style="background:var(--sev-medium)"></span>
+          <div class="org">Atom<small>CSRF</small></div>
+          <div class="desc">Found and responsibly disclosed a Cross-Site Request Forgery flaw impacting authenticated user workflows.</div>
+          <span class="badge badge-medium">Medium</span>
+        </a>
+      </div>
+      <div style="text-align:right;margin-top:6px;">
+        <span style="font-family:var(--mono);font-size:12px;color:var(--muted-2);">click a finding above for the full write-up ↓</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec-head"><span class="comment"><span class="num">04</span> projects</span></div>
+      <h2 style="margin-bottom:32px;">Tooling I've built</h2>
+      <div class="proj-grid reveal">
+
+        <div class="card">
+          <div class="card-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <div class="card-top"><h3>MCP-Sentinel</h3><span class="status status-active">validated</span></div>
+          <div class="stack">n8n · MCP protocol · Claude reasoning agent</div>
+          <p>Turns the tables on AI infrastructure itself — an agent that pentests other AI agents and MCP servers instead of web apps. Most AI security tooling checks whether a model behaves safely; this checks whether the surrounding infrastructure — the tools it's wired to, the permissions it's granted — actually holds up under adversarial pressure. It started as a way to stress-test my own AI agent before I trusted it with anything else, then grew into a general-purpose auditor.</p>
+          <ul>
+            <li>Discovery pipeline enumerates a target's full tool manifest via the MCP initialize handshake and tools/list call, gated behind a scope guardrail so it never touches anything outside the agreed target</li>
+            <li>Auth/JWT tampering, scope audits with real proof-of-exploit, and secrets scanning run as dedicated check branches</li>
+            <li>Tool-poisoning and schema-drift checks catch manifests that lie about what a tool does or change definitions mid-session</li>
+            <li>A live prompt-injection test wires a real AI agent to the target's actual tools and watches whether it acts on a hidden instruction buried in untrusted content</li>
+            <li>Validated first against a self-built test target, then against a live external MCP server with a planted vulnerability — correctly flagged it as a confirmed exploit</li>
+            <li>Built end-to-end in n8n, with a Claude-powered reasoning agent that triages raw check output into a disclosure-style report a human reviewer could act on directly</li>
+          </ul>
+        </div>
+
+        <div class="card progress">
+          <div class="card-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+          </div>
+          <div class="card-top"><h3>Spectre</h3><span class="status status-progress">phase 2</span></div>
+          <div class="stack">Python · Flask · Kali Linux</div>
+          <p>An automated reconnaissance and vulnerability intelligence engine for mapping an application's real attack surface. Built to replace the manual grind of stitching together recon tools by hand — one pipeline takes a target from nothing to a structured, ranked picture of what's actually exposed. It's already surfaced real findings, not just test-lab ones: a live scan against xealenergy.com uncovered an exposed Okta OAuth configuration pulled straight out of a React bundle, which turned into a responsible disclosure report.</p>
+          <ul>
+            <li>Multi-stage pipeline: subdomain enumeration, endpoint discovery, attack-surface mapping</li>
+            <li>Runs in four phases — discovery, crawling, analysis, active recon — with controlled concurrency instead of firing every module at once</li>
+            <li>Integrates Katana, GAU, and HTTPX with custom parsers behind a scan-ID isolation model, so concurrent scans never step on each other's results</li>
+            <li>Detection modules for exposed API endpoints, sensitive files, and misconfigured assets</li>
+            <li>Combines live crawling, JavaScript analysis, and historical-source data for coverage a single tool would miss on its own</li>
+            <li>Currently in phase 2 (the vulnerability scanner); next up is a module for probing stale 403 responses on staging and demo subdomains</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head"><span class="comment"><span class="num">05</span> experience</span></div>
+      <h2 style="margin-bottom:32px;">Where I've worked</h2>
+      <div class="reveal">
+        <div class="xp-item">
+          <div class="when">Aug 2026 — Present</div>
+          <div>
+            <h3>Project Dynamo Fellow</h3>
+            <div class="org">Handshake AI · Remote</div>
+            <p style="color:var(--muted);font-size:14px;margin:0 0 12px;">Working on Terminal-Bench 2, a benchmark used to evaluate how well AI agents handle real command-line work — my job is to make sure the hard tasks are actually hard for the right reasons.</p>
+            <ul>
+              <li>Design challenging, realistic command-line tasks that evaluate AI agents' ability to reason and execute multi-step problems</li>
+              <li>Author security and digital forensics tasks: investigation, analysis, and evidence-based troubleshooting</li>
+              <li>Build reproducible task environments with clear requirements, expected outcomes, and validation criteria</li>
+              <li>Apply adversarial thinking to close loopholes agents could exploit to pass a task without solving it properly</li>
+              <li>Take each task through a multi-stage review pipeline — peer review, automated quality gates, and multiple revision rounds — before it's accepted into the benchmark</li>
+              <li>Calibrate task difficulty against real agent trial data so tasks stay genuinely discriminating, neither trivially solvable nor unfairly opaque</li>
+            </ul>
+          </div>
+        </div>
+        <div class="xp-item">
+          <div class="when">Independent</div>
+          <div>
+            <h3>Security Researcher</h3>
+            <div class="org">Self-directed</div>
+            <p style="color:var(--muted);font-size:14px;margin:0 0 12px;">About six months of self-directed offensive security work — no employer, no assigned scope, just live programs and my own curiosity about how real systems break.</p>
+            <ul>
+              <li>Bug bounty hunting and responsible disclosure across multiple live programs</li>
+              <li>Skill development through CTF-style practice and building personal offensive-security tooling</li>
+              <li>Run a personal toolchain built around Burp Suite Professional, Nuclei, Subfinder, and HTTPX on a dedicated Kali Linux setup</li>
+              <li>Completed virtual job simulations with Tata, Deloitte, Mastercard, Commonwealth Bank, and Datacom covering forensics, incident response, and risk assessment</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-head"><span class="comment"><span class="num">06</span> skills</span></div>
+      <h2 style="margin-bottom:32px;">Toolkit</h2>
+      <div class="skill-cols reveal">
+        <div class="skill-col">
+          <h4>Testing</h4>
+          <div class="chips">
+            <span class="chip">WAPT</span><span class="chip">VAPT</span><span class="chip">OWASP Top 10</span>
+            <span class="chip">API Security</span><span class="chip">Recon</span>
+            <span class="chip">Bug Bounty Triage</span><span class="chip">Responsible Disclosure</span>
+          </div>
+        </div>
+        <div class="skill-col">
+          <h4>Tools</h4>
+          <div class="chips">
+            <span class="chip">Burp Suite Pro</span><span class="chip">Nmap</span><span class="chip">Nuclei</span>
+            <span class="chip">Metasploit</span><span class="chip">Nessus</span><span class="chip">Bloodhound</span>
+            <span class="chip">SQLMap</span><span class="chip">Subfinder</span><span class="chip">HTTPX</span>
+          </div>
+        </div>
+        <div class="skill-col">
+          <h4>Platforms</h4>
+          <div class="chips">
+            <span class="chip">Kali Linux</span><span class="chip">Windows</span><span class="chip">GitHub</span><span class="chip">n8n</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:40px;" class="reveal">
+        <h4 style="font-family:var(--mono);font-size:12px;color:var(--muted-2);text-transform:uppercase;letter-spacing:0.05em;margin:0 0 14px;">Certifications</h4>
+        <div class="cert-row">
+          <div class="cert"><span class="yr">2025</span><span class="name">Oracle Cloud Infrastructure — Certified Generative AI Professional</span></div>
+          <div class="cert"><span class="yr">2025</span><span class="name">Advent of Cyber — TryHackMe</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="wrap">
+      <div class="sec-head"><span class="comment"><span class="num">07</span> research</span></div>
+      <h2 style="margin-bottom:12px;">Where I focus</h2>
+      <p style="color:var(--muted);font-size:15px;max-width:60ch;margin:0 0 30px;">The areas I keep coming back to — through client work, bounty programs, and the tooling I build on the side.</p>
+      <div class="research-grid reveal">
+        <div class="research-tag">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+          Web Application Security
+        </div>
+        <div class="research-tag">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 3-3 3-3-3 3-3zM2 12l3-3 3 3-3 3-3-3zM12 22l-3-3 3-3 3 3-3 3zM22 12l-3 3-3-3 3-3 3 3z"/></svg>
+          API Security
+        </div>
+        <div class="research-tag">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
+          JWT Security
+        </div>
+        <div class="research-tag">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+          AI Security
+        </div>
+        <div class="research-tag">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+          MCP Security
+        </div>
+        <div class="research-tag">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          Recon &amp; Attack Surface Discovery
+        </div>
+        <div class="research-tag">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6l1 4H8l1-4z"/><path d="M6 7h12l-1 13a2 2 0 01-2 2H9a2 2 0 01-2-2L6 7z"/><path d="M10 11v6M14 11v6"/></svg>
+          Digital Forensics
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="contact-box reveal">
+      <span class="comment"><span class="num">08</span> contact</span>
+      <h2>Open to VAPT and application security roles</h2>
+      <p>Based in Mumbai / Pune, open to hybrid work in either city.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:shashankbagule@gmail.com">shashankbagule@gmail.com</a>
+        <a class="btn btn-ghost" href="tel:+918104315009">+91-8104315009</a>
+        <a class="btn btn-ghost" href="https://linkedin.com/in/shashankbagule" target="_blank" rel="noopener">linkedin.com/in/shashankbagule</a>
+        <a class="btn btn-ghost" href="https://github.com/shashankbagule" target="_blank" rel="noopener">github.com/shashankbagule</a>
+      </div>
+    </div>
+    <div class="foot-meta">
+      <span>Shashank Kishor Bagule — B.E. Computer Engineering, Dilkap Institute of Technology</span>
+      <span>Built with n8n, Burp Suite, and a lot of recon</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var resumeDrop = document.getElementById('resumeDrop');
+  var resumeCaret = document.getElementById('resumeCaret');
+  if(resumeDrop && resumeCaret){
+    resumeCaret.addEventListener('click', function(e){
+      e.stopPropagation();
+      resumeDrop.classList.toggle('open');
+    });
+    document.addEventListener('click', function(e){
+      if(!resumeDrop.contains(e.target)){ resumeDrop.classList.remove('open'); }
+    });
+  }
+
+  document.getElementById('menutoggle').addEventListener('click', function(){
+    var links = document.querySelector('.navlinks');
+    var open = links.style.display === 'flex';
+    links.style.display = open ? 'none' : 'flex';
+    links.style.cssText += open ? '' : 'flex-direction:column;position:absolute;top:64px;right:32px;background:#151b23;border:1px solid #262f3a;border-radius:8px;padding:16px 22px;gap:14px;';
+  });
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var els = document.querySelectorAll('.reveal');
+  if(!reduceMotion && 'IntersectionObserver' in window){
+    els.forEach(function(el){ el.classList.add('pending'); });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.12});
+    els.forEach(function(el){ io.observe(el); });
+  }
+
+  var termLines = [
+    {t:'$ mcp-sentinel scan --target api.internal', c:'prompt'},
+    {t:'[+] enumerating tool manifest ... 9 tools found', c:'ok'},
+    {t:'[!] scope mismatch on read_config (write access)', c:'warn'},
+    {t:'[+] executing proof-of-exploit ...', c:'ok'},
+    {t:'[CRITICAL] confirmed exploit — delete persisted', c:'crit'}
+  ];
+  var termEl = document.getElementById('termbody');
+  if(termEl){
+    if(reduceMotion){
+      termEl.innerHTML = termLines.map(function(l){return '<div class="ln '+l.c+'">'+l.t+'</div>';}).join('');
+    } else {
+      var li = 0, ci = 0;
+      function typeLine(){
+        if(li >= termLines.length){
+          setTimeout(function(){ termEl.innerHTML=''; li=0; ci=0; typeLine(); }, 2600);
+          return;
+        }
+        var line = termLines[li];
+        if(ci === 0){
+          var div = document.createElement('div');
+          div.className = 'ln ' + line.c;
+          div.innerHTML = '<span class="caret"></span>';
+          termEl.appendChild(div);
+        }
+        var div = termEl.lastChild;
+        ci++;
+        div.innerHTML = line.t.slice(0, ci) + '<span class="caret"></span>';
+        if(ci < line.t.length){
+          setTimeout(typeLine, 16);
+        } else {
+          div.innerHTML = line.t;
+          li++; ci = 0;
+          setTimeout(typeLine, 380);
+        }
+      }
+      typeLine();
+    }
+  }
+</script>
+
+</body>
+</html>
