@@ -1,37 +1,102 @@
-shashank@bagule_
-about
-findings
-projects
-experience
- contact
-← Back to findings
-TARGET · Xeal Triaged · CVSS 5.0 JWT alg:none $500 bounty
-JWT "alg:none" acceptance
-Reported as a Critical/P1 finding, then re-triaged to CVSS 5.0 once Xeal's team clarified what the affected token actually protected. Worth including precisely because of that correction.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JWT "alg:none" Finding — Xeal | Shashank Bagule</title>
+<meta name="description" content="A JWT alg:none acceptance issue found in a Xeal application, triaged from an initial Critical report down to CVSS 5.0 after further investigation, and paid as a $500 bounty.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
 
-This write-up is intentionally high-level. It describes the vulnerability class, impact, and remediation without including working exploit code or the exact token/endpoint details.
-Vulnerability
-The application's JWT verification logic accepted tokens with the algorithm header set to "none". In practice, this means a token's signature could be stripped entirely and the application would still parse and trust the claims inside it — a well-known JWT implementation flaw, not a novel attack class.
+<header>
+  <nav class="wrap">
+    <a href="../index.html" class="logo"><span class="dot"></span>shashank@bagule<span class="cursor">_</span></a>
+    <ul class="navlinks">
+      <li><a href="../index.html#about">about</a></li>
+      <li><a href="../index.html#findings">findings</a></li>
+      <li><a href="../index.html#projects">projects</a></li>
+      <li><a href="../index.html#experience">experience</a></li>
+    </ul>
+    <div class="navright">
+      <a class="navicon" href="https://github.com/shashankbagule" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.28 7.77 10.78.57.1.78-.25.78-.55 0-.27-.01-1.16-.02-2.11-3.16.69-3.83-1.35-3.83-1.35-.52-1.31-1.26-1.66-1.26-1.66-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.73 2.65 1.23 3.3.94.1-.73.4-1.23.72-1.51-2.52-.29-5.17-1.26-5.17-5.62 0-1.24.44-2.26 1.17-3.05-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.16.91-.25 1.89-.38 2.86-.38.97 0 1.95.13 2.86.38 2.18-1.47 3.14-1.16 3.14-1.16.62 1.57.23 2.73.11 3.02.73.79 1.17 1.81 1.17 3.05 0 4.37-2.65 5.33-5.18 5.61.41.35.77 1.04.77 2.1 0 1.51-.01 2.73-.01 3.1 0 .3.2.66.79.55 4.5-1.5 7.76-5.76 7.76-10.78C23.02 5.24 18.27.5 12 .5z"/></svg>
+      </a>
+      <a class="navcta" href="mailto:shashankbagule@gmail.com">contact</a>
+    </div>
+  </nav>
+</header>
 
-Target
-A web application/API operated by Xeal that issues and verifies JWTs for a specific token type used within the product.
+<main>
+  <section class="wu-hero">
+    <div class="wrap">
+      <a class="wu-back" href="../index.html#findings">← Back to findings</a>
+      <div class="wu-meta">
+        <span class="tag">TARGET · Xeal</span>
+        <span class="badge badge-medium">Triaged · CVSS 5.0</span>
+        <span class="tag">JWT alg:none</span>
+        <span class="tag">$500 bounty</span>
+      </div>
+      <h1 class="wu-title">JWT "alg:none" acceptance</h1>
+      <p style="color:var(--muted);font-size:16px;max-width:70ch;margin:0;">Reported as a Critical/P1 finding, then re-triaged to CVSS 5.0 once Xeal's team clarified what the affected token actually protected. Worth including precisely because of that correction.</p>
+      <div class="wu-note">This write-up is intentionally high-level. It describes the vulnerability class, impact, and remediation without including working exploit code or the exact token/endpoint details.</div>
+    </div>
+  </section>
 
-Impact
-Initially reported and assessed as Critical/P1 on the assumption that this token type gated real access. During triage, Xeal's engineering team determined the specific token functioned as a configuration identifier rather than a live access credential, and that their backend independently rejects alg:none tokens at the point where real authentication decisions are made. The finding was re-triaged to CVSS 5.0 (Medium) to reflect that narrower real-world impact.
+  <section class="wu-body">
+    <div class="wrap">
+      <div class="wu-section">
+        <h2>Vulnerability</h2>
+        <p>The application's JWT verification logic accepted tokens with the algorithm header set to <code>"none"</code>. In practice, this means a token's signature could be stripped entirely and the application would still parse and trust the claims inside it — a well-known JWT implementation flaw, not a novel attack class.</p>
+      </div>
+      <div class="wu-grid2">
+        <div class="wu-section">
+          <h2>Target</h2>
+          <p>A web application/API operated by Xeal that issues and verifies JWTs for a specific token type used within the product.</p>
+        </div>
+        <div class="wu-section">
+          <h2>Impact</h2>
+          <p>Initially reported and assessed as Critical/P1 on the assumption that this token type gated real access. During triage, Xeal's engineering team determined the specific token functioned as a configuration identifier rather than a live access credential, and that their backend independently rejects <code>alg:none</code> tokens at the point where real authentication decisions are made. The finding was re-triaged to CVSS 5.0 (Medium) to reflect that narrower real-world impact.</p>
+        </div>
+      </div>
+      <div class="wu-section">
+        <h2>Root Cause</h2>
+        <p>Insufficient enforcement of the expected signing algorithm during JWT verification — the verification library accepted <code>"none"</code> as a valid algorithm value instead of explicitly rejecting it, a classic instance of trusting the algorithm header supplied by the token itself.</p>
+      </div>
+      <div class="wu-section">
+        <h2>Exploitation summary</h2>
+        <p>Confirmed that the application would accept a token with its signature removed and the algorithm header changed to <code>"none"</code>. From there, I worked with Xeal to map exactly which application paths consumed that token type and whether any of them made trust decisions based on its claims — which is what surfaced the config-identifier distinction that changed the severity.</p>
+      </div>
+      <div class="wu-section">
+        <h2>Proof of concept</h2>
+        <p>A modified JWT with an empty signature and <code>"alg": "none"</code> was accepted by the verification endpoint. No token values, endpoint paths, or other sensitive details are included in this write-up.</p>
+      </div>
+      <div class="wu-section">
+        <h2>Remediation</h2>
+        <ul>
+          <li>Explicitly allow-list acceptable signing algorithms in the JWT verification library and reject <code>"none"</code> outright.</li>
+          <li>Pin the expected algorithm per key/use-case server-side, rather than trusting the algorithm declared in the token's own header.</li>
+        </ul>
+      </div>
+      <div class="wu-cta">
+        <p>Reported directly to Xeal; triaged to CVSS 5.0 and paid as a $500 bounty.</p>
+        <a class="btn btn-primary" href="mailto:shashankbagule@gmail.com">Get in touch</a>
+      </div>
+    </div>
+  </section>
+</main>
 
-Root Cause
-Insufficient enforcement of the expected signing algorithm during JWT verification — the verification library accepted "none" as a valid algorithm value instead of explicitly rejecting it, a classic instance of trusting the algorithm header supplied by the token itself.
+<footer>
+  <div class="wrap">
+    <div class="foot-meta">
+      <span>Shashank Kishor Bagule — B.E. Computer Engineering, Dilkap Institute of Technology</span>
+      <a href="../index.html" style="color:var(--muted-2);">← back to portfolio</a>
+    </div>
+  </div>
+</footer>
 
-Exploitation summary
-Confirmed that the application would accept a token with its signature removed and the algorithm header changed to "none". From there, I worked with Xeal to map exactly which application paths consumed that token type and whether any of them made trust decisions based on its claims — which is what surfaced the config-identifier distinction that changed the severity.
-
-Proof of concept
-A modified JWT with an empty signature and "alg": "none" was accepted by the verification endpoint. No token values, endpoint paths, or other sensitive details are included in this write-up.
-
-Remediation
-Explicitly allow-list acceptable signing algorithms in the JWT verification library and reject "none" outright.
-Pin the expected algorithm per key/use-case server-side, rather than trusting the algorithm declared in the token's own header.
-Reported directly to Xeal; triaged to CVSS 5.0 and paid as a $500 bounty.
-
-Get in touch
-Shashank Kishor Bagule — B.E. Computer Engineering, Dilkap Institute of Technology ← back to portfolio
+</body>
+</html>
