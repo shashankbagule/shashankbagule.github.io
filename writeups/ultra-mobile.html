@@ -1,0 +1,38 @@
+shashank@bagule_
+about
+findings
+projects
+experience
+ contact
+← Back to findings
+TARGET · Ultra Mobile P2 · High CVE-2025-55184 CVSS 7.5
+Independently reproducing CVE-2025-55184
+A publicly disclosed pre-authentication denial-of-service vulnerability in React Server Components. My role here was independent verification against a live target, not original discovery.
+
+This write-up is intentionally high-level. It describes the vulnerability class, impact, and remediation without including exploit code, payloads, or step-by-step reproduction instructions.
+Vulnerability
+CVE-2025-55184 is a publicly disclosed, pre-authentication Denial-of-Service vulnerability affecting React Server Components — specifically the react-server-dom-parcel, react-server-dom-webpack, and react-server-dom-turbopack packages used by Next.js applications built on the App Router. It's tracked as CWE-502 (Insecure Deserialization) and carries a CVSS score of 7.5 (High). The advisory and technical details are public — this entry documents my own verification work, not the original disclosure.
+
+Target
+A Next.js / React-based web application operated by Ultra Mobile, running a version of the affected react-server-dom-* packages within the CVE's disclosed version range.
+
+Impact
+An unauthenticated attacker able to reach the affected Server Function endpoint could trigger the flaw and hang the Node.js server process, causing a denial of service for the application's users until the process was manually restarted. No data exposure or remote code execution is associated with this CVE.
+
+Root Cause
+The vulnerability stems from unsafe deserialization of untrusted payloads submitted to React Server Function endpoints. Certain crafted payload structures cause the deserialization routine to enter an infinite loop, which blocks Node.js's single-threaded event loop and prevents the server from handling any further requests.
+
+Exploitation summary
+After the CVE was publicly disclosed, I reviewed the public advisory and technical writeups to understand the vulnerable code path and the affected version range. I then checked whether Ultra Mobile's live application was running an affected configuration, confirmed the relevant endpoint was reachable, and reproduced the documented failure condition against it — establishing that the issue was genuinely present on a live target rather than assuming exposure from version numbers alone.
+
+Proof of concept
+In line with responsible disclosure practice, this write-up does not include exploit code or the exact payload used. At a high level: a single crafted HTTP request to a reachable Server Function endpoint was sufficient to reproduce the server hang described in the public advisory — consistent with the CVE's "pre-authentication" classification and CVSS 7.5 rating.
+
+Remediation
+Upgrade the affected react-server-dom-* packages to a patched release per the vendor advisory.
+Apply available virtual patches (e.g. WAF rules) as an interim mitigation while the upgrade is scheduled.
+Add request-level safeguards — payload validation and processing timeouts — in front of Server Function endpoints to limit the blast radius of any future deserialization issue.
+This finding was verified independently against a public CVE — happy to discuss the methodology in more detail.
+
+Get in touch
+Shashank Kishor Bagule — B.E. Computer Engineering, Dilkap Institute of Technology ← back to portfolio
