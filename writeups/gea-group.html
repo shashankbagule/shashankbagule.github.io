@@ -1,0 +1,38 @@
+shashank@bagule_
+about
+findings
+projects
+experience
+ contact
+← Back to findings
+TARGET · GEA Group Low / Info Exposed API key Hall of Fame
+Exposed Google Maps API key
+A lower-severity but still reportable finding — an API key discoverable in a GEA Group web application, without adequate usage restrictions in place.
+
+This write-up is sanitized for public disclosure. The actual key value and its exact file location are omitted, since the key may not yet be rotated.
+Vulnerability
+An unrestricted Google Maps API key hardcoded into a client-side JavaScript bundle served by a GEA Group web application, with no HTTP referrer restriction applied in Google Cloud Console. Any third party could extract and reuse it from an unrelated origin.
+
+Target
+gea.com — the public-facing corporate web application, which integrates the Google Maps JavaScript API. The key was shipped inside one of the site's static Next.js JS chunks, delivered to every visitor's browser.
+
+Impact
+Because the key carried no referrer restriction, anyone could embed it in an unrelated site or script and drive usage against GEA's own Google Cloud billing account — creating direct financial liability, and at sufficient volume, exhausting the account's quota and disrupting Maps functionality on GEA's own site. I assessed this as high-risk given that financial exposure; it was accepted into GEA's Security Hall of Fame program.
+
+Root Cause
+The API key was embedded directly in a compiled front-end JS bundle — a common pattern for client-side Google Maps integrations — but the key itself had no HTTP referrer or IP restriction configured, so its use was never actually limited to GEA's own domains.
+
+Exploitation summary
+Identified the exposed key while reviewing GEA's public-facing static assets, then confirmed the missing referrer restriction by successfully invoking a Google Maps API endpoint directly with the key, from outside any GEA-owned domain — proving it was usable by anyone, not just gea.com.
+
+Proof of concept
+This write-up omits the actual key value and its exact file location, since the key may not yet be rotated. At a high level: calling a standard Google Maps API endpoint directly with the key, from a browser with no connection to gea.com, returned a valid response — confirming the missing referrer restriction without requiring any further access.
+
+Remediation
+Rotate the exposed key immediately.
+Restrict the replacement key by HTTP referrer (and IP, where applicable) so it only functions on GEA's own domains.
+Set a budget alert / quota cap on the Google Cloud project as defense-in-depth against future key exposure.
+Reported to GEA Group's security team on Dec 1, 2025; accepted into their Security Hall of Fame.
+
+Get in touch
+Shashank Kishor Bagule — B.E. Computer Engineering, Dilkap Institute of Technology ← back to portfolio
