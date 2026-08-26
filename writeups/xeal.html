@@ -1,0 +1,37 @@
+shashank@bagule_
+about
+findings
+projects
+experience
+ contact
+← Back to findings
+TARGET · Xeal Triaged · CVSS 5.0 JWT alg:none $500 bounty
+JWT "alg:none" acceptance
+Reported as a Critical/P1 finding, then re-triaged to CVSS 5.0 once Xeal's team clarified what the affected token actually protected. Worth including precisely because of that correction.
+
+This write-up is intentionally high-level. It describes the vulnerability class, impact, and remediation without including working exploit code or the exact token/endpoint details.
+Vulnerability
+The application's JWT verification logic accepted tokens with the algorithm header set to "none". In practice, this means a token's signature could be stripped entirely and the application would still parse and trust the claims inside it — a well-known JWT implementation flaw, not a novel attack class.
+
+Target
+A web application/API operated by Xeal that issues and verifies JWTs for a specific token type used within the product.
+
+Impact
+Initially reported and assessed as Critical/P1 on the assumption that this token type gated real access. During triage, Xeal's engineering team determined the specific token functioned as a configuration identifier rather than a live access credential, and that their backend independently rejects alg:none tokens at the point where real authentication decisions are made. The finding was re-triaged to CVSS 5.0 (Medium) to reflect that narrower real-world impact.
+
+Root Cause
+Insufficient enforcement of the expected signing algorithm during JWT verification — the verification library accepted "none" as a valid algorithm value instead of explicitly rejecting it, a classic instance of trusting the algorithm header supplied by the token itself.
+
+Exploitation summary
+Confirmed that the application would accept a token with its signature removed and the algorithm header changed to "none". From there, I worked with Xeal to map exactly which application paths consumed that token type and whether any of them made trust decisions based on its claims — which is what surfaced the config-identifier distinction that changed the severity.
+
+Proof of concept
+A modified JWT with an empty signature and "alg": "none" was accepted by the verification endpoint. No token values, endpoint paths, or other sensitive details are included in this write-up.
+
+Remediation
+Explicitly allow-list acceptable signing algorithms in the JWT verification library and reject "none" outright.
+Pin the expected algorithm per key/use-case server-side, rather than trusting the algorithm declared in the token's own header.
+Reported directly to Xeal; triaged to CVSS 5.0 and paid as a $500 bounty.
+
+Get in touch
+Shashank Kishor Bagule — B.E. Computer Engineering, Dilkap Institute of Technology ← back to portfolio
