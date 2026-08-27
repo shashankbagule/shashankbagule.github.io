@@ -1,4 +1,4 @@
-:root{
+  :root{
     --bg:#0d1015;
     --bg-alt:#151b23;
     --bg-raise:#1b232d;
@@ -41,7 +41,8 @@
     font-family:var(--mono);
     font-size:13px;
     letter-spacing:0.02em;
-    color:var(--muted-2);
+    color:var(--fg);
+    font-weight:700;
     display:flex;
     align-items:center;
     gap:10px;
