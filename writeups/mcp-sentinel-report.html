@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sample Security Report — MCP-Sentinel | Shashank Bagule</title>
+<meta name="description" content="An unedited real MCP-Sentinel scan report against a self-hosted MCP test target — confirmed findings, evidence, and severity scoring exactly as the tool produced them.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.rep-table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:14px;}
+.rep-table th{text-align:left;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.04em;color:var(--muted-2);padding:8px 12px;border-bottom:1px solid var(--line);}
+.rep-table td{padding:12px;border-bottom:1px solid var(--line);color:var(--muted);vertical-align:top;line-height:1.5;}
+.rep-table tr:last-child td{border-bottom:none;}
+.rep-score{font-family:var(--mono);font-weight:700;color:var(--fg);white-space:nowrap;}
+.rep-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0 30px;}
+.rep-stat{background:var(--card-bg,#151b23);border:1px solid var(--line);border-radius:10px;padding:16px 18px;}
+.rep-stat .lbl{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted-2);display:block;margin-bottom:8px;}
+.rep-stat .val{font-size:28px;font-weight:800;color:var(--fg);}
+.rep-stat .val.crit{color:var(--sev-high);}
+.rep-raw{background:#0d1117;border:1px solid var(--line);border-radius:10px;padding:20px 22px;max-height:520px;overflow-y:auto;font-family:var(--mono);font-size:12.5px;line-height:1.7;color:#c9d1d9;white-space:pre-wrap;word-break:break-word;}
+.rep-raw strong{color:#f0f2f5;}
+.rep-badge-ok{display:inline-block;background:rgba(72,157,124,0.15);color:#5fd9a8;border:1px solid rgba(72,157,124,0.35);border-radius:999px;padding:3px 12px;font-family:var(--mono);font-size:11.5px;}
+@media (max-width:720px){.rep-stats{grid-template-columns:1fr;}.rep-table{font-size:13px;}}
+</style>
+</head>
+<body>
+
+<header>
+<nav class="wrap">
+<a href="../index.html" class="logo"><span class="dot"></span>Shashank Bagule<span class="cursor">_</span></a>
+<ul class="navlinks">
+<li><a href="../index.html#about">About</a></li>
+<li><a href="../index.html#findings">Findings</a></li>
+<li><a href="../index.html#projects">Projects</a></li>
+<li><a href="../index.html#experience">Experience</a></li>
+</ul>
+<div class="navright">
+<a class="navicon" href="https://linkedin.com/in/shashankbagule" target="_blank" rel="noopener" aria-label="LinkedIn">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43c-1.14 0-2.06-.93-2.06-2.06 0-1.14.92-2.06 2.06-2.06 1.13 0 2.06.92 2.06 2.06 0 1.13-.93 2.06-2.06 2.06zm1.78 13.02H3.56V9h3.56v11.45z"/></svg>
+</a>
+<a class="navicon" href="https://github.com/shashankbagule" target="_blank" rel="noopener" aria-label="GitHub">
+<svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.28 7.77 10.78.57.1.78-.25.78-.55 0-.27-.01-1.16-.02-2.11-3.16.69-3.83-1.35-3.83-1.35-.52-1.31-1.26-1.66-1.26-1.66-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.73 2.65 1.23 3.3.94.1-.73.4-1.23.72-1.51-2.52-.29-5.17-1.26-5.17-5.62 0-1.24.44-2.26 1.17-3.05-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.16.91-.25 1.89-.38 2.86-.38.97 0 1.95.13 2.86.38 2.18-1.47 3.14-1.16 3.14-1.16.62 1.57.23 2.73.11 3.02.73.79 1.17 1.81 1.17 3.05 0 4.37-2.65 5.33-5.18 5.61.41.35.77 1.04.77 2.1 0 1.51-.01 2.73-.01 3.1 0 .3.2.66.79.55 4.5-1.5 7.76-5.76 7.76-10.78C23.02 5.24 18.27.5 12 .5z"/></svg>
+</a>
+<a class="navcta" href="mailto:shashankbagule@gmail.com">contact</a>
+</div>
+</nav>
+</header>
+
+<main>
+<section class="wu-hero">
+<div class="wrap">
+<a class="wu-back" href="../index.html#projects">← Back to projects</a>
+<div class="wu-meta">
+<span class="tag">MCP-SENTINEL · Scan #528</span>
+<span class="badge badge-high">Highest severity · Critical (9.3/10)</span>
+<span class="tag">Self-hosted MCP test target</span>
+</div>
+<h1 class="wu-title">Sample security assessment report</h1>
+<p style="color:var(--muted);font-size:16px;max-width:70ch;margin:0;">This is a real, unedited MCP-Sentinel scan output — not a mockup. It's run against a self-hosted MCP test server I built specifically to exercise the scanner's checks, so the target itself is mine; the report below (findings, evidence, and scoring) is exactly what the tool produced.</p>
+<div class="wu-note">Target: <code>http://127.0.0.1:3002/mcp</code> — a local MCP test server. Included to show the report's structure and evidence style, not as a disclosure against a third party.</div>
+</div>
+</section>
+
+<section class="wu-body">
+<div class="wrap">
+
+<div class="rep-stats">
+<div class="rep-stat"><span class="lbl">Confirmed</span><span class="val crit">2</span></div>
+<div class="rep-stat"><span class="lbl">Needs review</span><span class="val">2</span></div>
+<div class="rep-stat"><span class="lbl">Highest severity</span><span class="val crit">Critical</span></div>
+</div>
+
+<div class="wu-section">
+<h2>Executive summary</h2>
+<p>The assessment identified <strong>2 confirmed vulnerabilities</strong> and <strong>2 findings requiring manual verification</strong>. The highest confirmed score is <strong>9.3/10</strong> with a <strong>Critical</strong> severity. These results indicate significant security weaknesses that demand immediate remediation, while the unconfirmed items should be investigated to confirm or rule out potential risks.</p>
+</div>
+
+<div class="wu-section">
+<h2>Confirmed vulnerabilities</h2>
+<table class="rep-table">
+<tr><th>Score</th><th>Finding</th><th>Severity</th><th>Recommendation</th></tr>
+<tr>
+<td class="rep-score">9.3</td>
+<td><strong>CONFIRMED HIDDEN INSTRUCTION</strong> [deterministic — not a heuristic guess]: the <code>helpful_calculator</code> tool's description contains an embedded prompt-injection payload (an ANSI escape sequence, zero-width/invisible Unicode, and a bracketed fake system instruction) disguised using obfuscation techniques.</td>
+<td><span class="badge badge-high">Critical</span></td>
+<td>Review the exposed resource and enforce authentication/authorization controls.</td>
+</tr>
+<tr>
+<td class="rep-score">7.0</td>
+<td><strong>CONFIRMED RESOURCE EXPOSURE</strong> [deterministic]: the resource <code>secret://user/&#123;id&#125;/data</code> has a sensitive-sounding URI, and its actual content was successfully read with <strong>no authentication</strong> — real content retrieved, not just a listed name. By contrast, <code>config://server/settings</code> was read successfully but did not look sensitive this run, and <code>file://data/&#123;path&#125;</code> could not be read at all (access denied) — access control appears to be enforced there.</td>
+<td><span class="badge badge-medium">High</span></td>
+<td>Review the exposed resource and enforce authentication/authorization controls.</td>
+</tr>
+</table>
+</div>
+
+<div class="wu-section">
+<h2>Unconfirmed findings — requires manual verification</h2>
+<table class="rep-table">
+<tr><th>Finding</th><th>Status</th></tr>
+<tr>
+<td><strong>FUZZ TEST LEAK:</strong> sending unexpected input triggered a response resembling an internal error / stack trace / path — worth investigating for information disclosure.</td>
+<td><span class="rep-badge-ok">Flagged for review</span></td>
+</tr>
+<tr>
+<td><strong>PROMPT CONTENT EXPOSURE:</strong> the prompt <code>security_policy</code> was fetched successfully and its content contains sensitive-sounding wording (internal/system/admin/override references) — real content retrieved. The <code>data_analysis</code> prompt was also fetched but did not look sensitive this run.</td>
+<td><span class="rep-badge-ok">Flagged for review</span></td>
+</tr>
+</table>
+</div>
+
+<div class="wu-section">
+<h2>Security test coverage</h2>
+<table class="rep-table">
+<tr><th>Test area</th><th>Result</th></tr>
+<tr><td>Hidden Instruction Detection</td><td>Confirmed hidden instruction with embedded prompt-injection payload.</td></tr>
+<tr><td>Resource Exposure Detection</td><td>Confirmed resource exposure — sensitive URI accessed without authentication.</td></tr>
+<tr><td>Fuzz Test Leak</td><td>Unconfirmed — unexpected input triggered an internal error/stack trace.</td></tr>
+<tr><td>Prompt Content Exposure</td><td>Unconfirmed — sensitive prompt wording retrieved.</td></tr>
+</table>
+</div>
+
+<div class="wu-grid2">
+<div class="wu-section">
+<h2>Key observations</h2>
+<ul>
+<li>Embedded prompt-injection payload discovered inside a hidden instruction.</li>
+<li>Sensitive resource accessed without any authentication.</li>
+<li>Potential information disclosure via fuzz testing and prompt content retrieval.</li>
+</ul>
+</div>
+<div class="wu-section">
+<h2>Remediation priorities</h2>
+<p style="margin:0 0 6px;"><strong style="color:var(--sev-high);">Critical —</strong> enforce strict authentication and authorization controls on the exposed hidden-instruction resource.</p>
+<p style="margin:0 0 6px;"><strong style="color:#ffb454;">High —</strong> secure <code>secret://user/&#123;id&#125;/data</code> with proper access controls and monitoring.</p>
+<p style="margin:0;"><strong style="color:var(--muted-2);">Additional —</strong> manually verify the fuzz-test leak and prompt-content exposure findings.</p>
+</div>
+</div>
+
+<div class="wu-section">
+<h2>Raw report, as generated</h2>
+<p style="margin-bottom:12px;">This is the literal markdown output MCP-Sentinel's reasoning agent produced for this scan — nothing added or reworded.</p>
+<div class="rep-raw"># MCP-Sentinel Security Assessment Report
+
+## Executive Summary
+The assessment identified **2 confirmed vulnerabilities** and **2 findings requiring manual verification**. The highest confirmed score is **9.3/10** with a **Critical** severity. These results indicate significant security weaknesses that demand immediate remediation, while the unconfirmed items should be investigated to confirm or rule out potential risks.
+
+## Assessment Overview
+| Metric | Result |
+|---|---|
+| Confirmed Vulnerabilities | 2 |
+| Manual Verification Items | 2 |
+| Highest Confirmed Score | 9.3/10 |
+| Highest Confirmed Severity | Critical |
+
+## Confirmed Vulnerabilities
+| Score | Finding | Severity | Recommendation |
+|---|---|---|---|
+| 9.3 | CONFIRMED HIDDEN INSTRUCTION [DETERMINISTIC — DO NOT RECLASSIFY]: 'helpful_calculator' description contains an embedded prompt-injection payload (ANSI escape sequence, Zero-width/invisible Unicode, Bracketed fake system instruction) disguised using obfuscation techniques — this is a factual content match, not a heuristic guess. | Critical | Review the exposed resource and enforce authentication/authorization controls. |
+| 7 | Resource 'config://server/settings' was read successfully; content did not look obviously sensitive this run. CONFIRMED RESOURCE EXPOSURE [DETERMINISTIC — DO NOT RECLASSIFY]: resource 'secret://user/{id}/data' has a sensitive-sounding URI and its actual content was successfully read with no authentication — real content retrieved, not just a listed name. Resource 'file://data/{path}' could not be read (access denied or error) — access control appears to be enforced for this resource. Resource 'test://verify-live-scan-marker-a7f3' was read successfully; content did not look obviously sensitive this run. | High | Review the exposed resource and enforce authentication/authorization controls. |
+
+## Unconfirmed Findings — Requires Manual Verification
+| Score | Finding | Severity | Recommendation |
+|---|---|---|---|
+| 0 | FUZZ TEST LEAK: sending 'unexpected input' triggered a response resembling an internal error/stack trace/path — investigate for information disclosure. |  | Review the exposed content and enforce authentication/authorization controls. |
+| 0 | PROMPT CONTENT EXPOSURE: prompt 'security_policy' was fetched successfully and its actual content contains sensitive-sounding wording (e.g. internal/system/admin/override references) — real content retrieved, worth reviewing for information disclosure. Prompt 'data_analysis' was fetched successfully; content did not look obviously sensitive this run. |  | Review the exposed content and enforce authentication/authorization controls. |
+
+## Security Test Coverage
+| Test Area | Result | Status |
+|---|---|---|
+| Hidden Instruction Detection | Confirmed hidden instruction with embedded prompt-injection payload detected. | Finding |
+| Resource Exposure Detection | Confirmed resource exposure: sensitive URI accessed without authentication. | Finding |
+| Fuzz Test Leak | Unconfirmed fuzz test leak: unexpected input triggered internal error/stack trace. | Finding |
+| Prompt Content Exposure | Unconfirmed prompt content exposure: sensitive wording retrieved. | Finding |
+
+## Key Security Observations
+- Embedded prompt-injection payload discovered in a hidden instruction.
+- Sensitive resource accessed without authentication.
+- Potential information disclosure via fuzz testing and prompt content retrieval.
+
+## Remediation Priorities
+### Critical Priority
+- Enforce strict authentication and authorization controls on the exposed hidden instruction resource.
+
+### High Priority
+- Secure the sensitive resource (`secret://user/{id}/data`) by implementing proper access controls and monitoring.
+
+### Medium Priority
+- None identified.
+
+### Additional Validation
+- Conduct manual verification of fuzz test leaks and prompt content exposures to confirm potential vulnerabilities.</div>
+</div>
+
+<div class="wu-cta">
+<p>Want to see MCP-Sentinel run against your own MCP server, or talk through the architecture?</p>
+<a class="btn btn-primary" href="mailto:shashankbagule@gmail.com">Get in touch</a>
+</div>
+
+</div>
+</section>
+</main>
+
+<footer>
+<div class="wrap">
+<div class="foot-meta">
+<span>Shashank Kishor Bagule — B.E. Computer Engineering, Dilkap Institute of Technology</span>
+<a href="../index.html" style="color:var(--muted-2);">← back to portfolio</a>
+</div>
+</div>
+</footer>
+
+</body>
+</html>
