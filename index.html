@@ -180,8 +180,10 @@
           <p>Turns the tables on AI infrastructure itself — an agent that pentests other AI agents and MCP servers instead of web apps. Most AI security tooling checks whether a model behaves safely; this checks whether the surrounding infrastructure — the tools it's wired to, the permissions it's granted — actually holds up under adversarial pressure. It started as a way to stress-test my own AI agent before I trusted it with anything else, then grew into a general-purpose auditor.</p>
           <ul>
             <li>Discovery pipeline enumerates a target's full tool manifest via the MCP initialize handshake and tools/list call, gated behind a scope guardrail so it never touches anything outside the agreed target</li>
-            <li>Auth/JWT tampering, scope audits with real proof-of-exploit, and secrets scanning run as dedicated check branches</li>
+            <li>Auth/JWT tampering, scope audits with real proof-of-exploit, and secrets scanning run as dedicated check branches</li>   
+          <li>Findings carry a deterministic 0-10 severity score built from weighted evidence factors, not just an LLM's read of the situation - the same exploit scores the same way every run</li>
             <li>Tool-poisoning and schema-drift checks catch manifests that lie about what a tool does or change definitions mid-session</li>
+            <li>Every scan is checked against that target's full scan history: which findings are new, which got fixed, and which tools quietly changed their definition between separate scans - a rug-pull pattern a single scan can't catch</li>
             <li>A live prompt-injection test wires a real AI agent to the target's actual tools and watches whether it acts on a hidden instruction buried in untrusted content</li>
             <li>Validated first against a self-built test target, then against a live external MCP server with a planted vulnerability — correctly flagged it as a confirmed exploit</li>
             <li>Built end-to-end in n8n, with a Claude-powered reasoning agent that triages raw check output into a disclosure-style report a human reviewer could act on directly</li>
