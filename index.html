@@ -46,13 +46,6 @@
         <h1>I don't just find the flaw.<br>I show <span class="hl">how it gets exploited.</span></h1>
         <p class="lede">Shashank Bagule — Computer Engineering graduate and independent security researcher based between Mumbai and Pune, focused on web application penetration testing, API security, and building AI-assisted offensive security tooling.</p>
         <div class="herobtns">
-          <div class="resume-drop" id="resumeDrop">
-            <a class="btn btn-primary" href="Shashank_Bagule_Resume.pdf" download style="border-radius:4px 0 0 4px;">Download resume</a><button type="button" class="btn btn-primary" id="resumeCaret" aria-label="Choose resume version" style="border-radius:0 4px 4px 0;border-left:1px solid rgba(0,0,0,0.15);padding:13px 12px;">▾</button>
-            <div class="resume-menu">
-              <a href="Shashank_Bagule_Resume.pdf" download>Mumbai version <span>↓</span></a>
-              <a href="Shashank_Bagule_Resume_Pune.pdf" download>Pune version <span>↓</span></a>
-            </div>
-          </div>
           <a class="btn btn-ghost" href="https://github.com/shashankbagule" target="_blank" rel="noopener">GitHub ↗</a>
           <a class="btn btn-ghost" href="#findings">View findings</a>
         </div>
@@ -372,18 +365,6 @@
   }
   wireCopyEmail(document.getElementById('navContactBtn'));
   wireCopyEmail(document.getElementById('footerContactBtn'));
-
-  var resumeDrop = document.getElementById('resumeDrop');
-  var resumeCaret = document.getElementById('resumeCaret');
-  if(resumeDrop && resumeCaret){
-    resumeCaret.addEventListener('click', function(e){
-      e.stopPropagation();
-      resumeDrop.classList.toggle('open');
-    });
-    document.addEventListener('click', function(e){
-      if(!resumeDrop.contains(e.target)){ resumeDrop.classList.remove('open'); }
-    });
-  }
 
   document.getElementById('menutoggle').addEventListener('click', function(){
     var links = document.querySelector('.navlinks');
